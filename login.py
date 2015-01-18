@@ -13,7 +13,7 @@ class Untitled(unittest.TestCase):
 
     def test_untitled(self):
         driver = self.driver
-        driver.save_screenshot_as_file("screen.png")
+        driver.get_screenshot_as_file("screen.png")
         driver.get(self.base_url + "/")
         driver.find_element_by_name("password").clear()
         driver.find_element_by_name("password").send_keys("")
