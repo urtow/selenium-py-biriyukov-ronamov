@@ -3,16 +3,17 @@ from selenium import webdriver
 import unittest
 
 
-class Untitled(unittest.TestCase):
+class TestLogin(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Remote("http://192.168.0.14:4444/wd/hub/", webdriver.DesiredCapabilities.FIREFOX)
         self.driver.implicitly_wait(10)
-        self.base_url = "http://lamp.local/"
+        self.base_url = "http://localhost/php4dvd"
         self.verificationErrors = []
         self.accept_next_alert = True
 
-    def test_untitled(self):
+    def test_login(self):
         driver = self.driver
+        driver.maximize_window()
         driver.get_screenshot_as_file("screen.png")
         driver.get(self.base_url + "/")
         driver.find_element_by_name("password").clear()
