@@ -39,6 +39,19 @@ class TestApi():
         driver.find_element_by_id("q").send_keys(Keys.RETURN)
         assert not self.is_movie_present(movie_title)
 
+    def no_search_results(self):
+        # magic
+        sleep(0.2)
+        try:
+            result = self.driver.find_element_by_id('results')
+            message = result.find_elements_by_class_name("content")
+            if message.text == 'No movies where found.':
+                return True
+            else:
+                return False
+        except NoSuchElementException:
+            return False
+
     def is_movie_present(self, movie_title):
         # magic
         sleep(0.2)
